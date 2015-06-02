@@ -1,68 +1,49 @@
-var module = angular.module('userApp',['restangular','ui.router'])
-	
+'use strict';
 
-var guestCtrl = module.
-	controller('composeCtrl', function($scope, $log, Restangular) {	 
-	});
+var module = angular.module('postclientControllers', ['restangular', 'ui.router']);
+
+var composeCtrl = module.
+	controller('composeCtrl', ['$scope', '$log', 'restangular', function($scope, $log, Restangular) {
+}]);
+
+var mailListCtrl = module.
+	controller('mailListCtrl', ['$scope', '$log', 'restangular', function($scope, $log, Restangular) {
+}]);
+
+var mailFullCtrl = module.
+	controller('mailFullCtrl', ['$scope', '$log', 'restangular', function($scope, $log, Restangular) {
+}]);
 
 module.config(function($stateProvider, $urlRouterProvider) {
 		  
-		  // For any unmatched url, redirect to /state1
 		  $urlRouterProvider.otherwise("/mail");
 		   
-		  //Set up the states
 		  var compose = {
 		      name: 'compose',
 		      url: '/#/newletter',
 		      templateUrl: 'views/compose.html',
+		      controller: composeCtrl,
 		      data: {}
 		  }
-		  $stateProvider
-		    .state(compose)
-});
 
-var module = angular.module('userApp',['restangular','ui.router'])
-	
-
-var guestCtrl = module.
-	controller('mailFullCtrl', function($scope, $log, Restangular) {	 
-	});
-
-	module.config(function($stateProvider, $urlRouterProvider) {
-		  
-		  // For any unmatched url, redirect to /state1
-		  $urlRouterProvider.otherwise("/mail");
-		   
-		  //Set up the states
-		  var mailFull = {
-		      name: 'mailFull',
-		      url: '/#/mailfull',
-		      templateUrl: 'views/mailFull.html',
-		      data: {}
-		  }
-		  $stateProvider
-		    .state(mailFull)
-	});
-
-	var module = angular.module('userApp',['restangular','ui.router'])
-	
-
-var guestCtrl = module.
-	controller('mailListCtrl', function($scope, $log, Restangular) {	 
-	});
-
-	module.config(function($stateProvider, $urlRouterProvider) {
-		  
-		  // For any unmatched url, redirect to /state1
-		  $urlRouterProvider.otherwise("/mail");
-		   
-		  //Set up the states
 		  var mailList = {
 		      name: 'mailList',
 		      url: '/#/maillist',
 		      templateUrl: 'views/mailList.html',
+		      controller: mailListCtrl,
 		      data: {}
 		  }
+
+		  var mailFull = {
+		      name: 'mailFull',
+		      url: '/#/mailfull',
+		      templateUrl: 'views/mailFull.html',
+		      controller: mailFullCtrl,
+		      data: {}
+		  }
+
 		  $stateProvider
+		    .state(compose)
 		    .state(mailList)
-	});
+		    .state(mailFull)
+});
