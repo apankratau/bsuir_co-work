@@ -21,23 +21,23 @@ module.config(function($stateProvider, $urlRouterProvider) {
 		  var compose = {
 		      name: 'compose',
 		      url: '/#/newletter',
-		      templateUrl: 'views/compose.html',
+		      templateUrl: 'templates/compose.html',
 		      controller: composeCtrl,
 		      data: {}
 		  }
 
 		  var mailList = {
 		      name: 'mailList',
-		      url: '/#/maillist',
-		      templateUrl: 'views/mailList.html',
+		      url: '/#/inbox',
+		      templateUrl: 'templates/inbox.html',
 		      controller: mailListCtrl,
 		      data: {}
 		  }
 
 		  var mailFull = {
 		      name: 'mailFull',
-		      url: '/#/mailfull',
-		      templateUrl: 'views/mailFull.html',
+		      url: '/#/inbox/:message',
+		      templateUrl: 'templates/mail.html',
 		      controller: mailFullCtrl,
 		      data: {}
 		  }
@@ -45,5 +45,5 @@ module.config(function($stateProvider, $urlRouterProvider) {
 		  $stateProvider
 		    .state(compose)
 		    .state(mailList)
-		    .state(mailFull)
+		    .state(mailFull);
 });
