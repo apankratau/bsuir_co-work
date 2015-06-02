@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="postclientApp">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Post Client</title>
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <script src="js/lib/angular.js"></script>
+  <script src="js/lib/lodash.js"></script>
+  <script src="js/lib/restangular.js"></script>
+  <script src="js/lib/angular-ui-router.js"></script>
+
+  <script src="js/app.js"></script>
+  <script src="js/controllers.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+  <div class="container" ui-view="">
+    <div class="row">
+      <div class="twelve columns top_margined centered_text">
+        <h4>Post Client</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="six columns">
+        <a href="" class="u-pull-right">
+          <button type="button" class="button-primary">Compose message</button>
+        </a>
+      </div>
+      <div class="six columns">
+        <a href="" class="u-pull-left">
+          <button type="button" class="button_width_fix">Inbox</button>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="twelve columns centered_text">
+        <hr>
+        <p>&copy; 2015 Post Client, Inc.</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
