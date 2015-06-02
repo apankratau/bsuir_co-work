@@ -1,5 +1,5 @@
-<div class="row">
-  <textarea class="u-full-width" placeholder="Enter your message here..." id="message_box"></textarea>
-  <button class="button-primary u-pull-right compose_buttons_margin" type="button" name="send_message">Send</button>
-  <button class="button u-pull-right compose_buttons_margin" type="button" name="send_message">Back</button>
+<div class="row" ng-controller="composeCtrl">
+  <textarea class="u-full-width" placeholder="Enter your message here..." id="message_box" ng-model="message"></textarea>
+  <button class="button-primary u-pull-right compose_buttons_margin" type="button" name="send_message" ng-click="sendMessage()">Send</button>
+  <button class="button u-pull-right compose_buttons_margin" type="button" name="send_message" ui-sref="mail">Back</button>
 </div>

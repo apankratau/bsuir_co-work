@@ -3,7 +3,11 @@
 var module = angular.module('postclientControllers', ['restangular', 'ui.router']);
 
 var composeCtrl = module.
-	controller('composeCtrl', ['$scope', '$log', 'restangular', function($scope, $log, Restangular) {
+	controller('composeCtrl', ['$scope', function($scope) {
+		$scope.sendMessage =function(){
+			console.log($scope.message);
+		}
+
 }]);
 
 var mailListCtrl = module.
@@ -29,7 +33,7 @@ module.config(function($stateProvider, $urlRouterProvider) {
 		      name: 'newletter',
 		      url: '/newletter',
 		      templateUrl: 'templates/compose.html',
-		     // controller: composeCtrl,
+		      //controller: composeCtrl,
 		      data: {}
 		  }
 
