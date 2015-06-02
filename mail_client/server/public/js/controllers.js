@@ -17,18 +17,25 @@ var mailFullCtrl = module.
 module.config(function($stateProvider, $urlRouterProvider) {
 		  
 		  $urlRouterProvider.otherwise("/mail");
-		   
+
+		  var mail = {
+		  	  name: 'mail',
+		      url: '/mail',
+		      templateUrl: 'templates/mail.html',
+		      data: {}
+		  }
+
 		  var compose = {
-		      name: 'compose',
-		      url: '/#/newletter',
+		      name: 'newletter',
+		      url: '/newletter',
 		      templateUrl: 'templates/compose.html',
-		      controller: composeCtrl,
+		     // controller: composeCtrl,
 		      data: {}
 		  }
 
 		  var mailList = {
 		      name: 'mailList',
-		      url: '/#/inbox',
+		      url: '/inbox',
 		      templateUrl: 'templates/inbox.html',
 		      controller: mailListCtrl,
 		      data: {}
@@ -36,7 +43,7 @@ module.config(function($stateProvider, $urlRouterProvider) {
 
 		  var mailFull = {
 		      name: 'mailFull',
-		      url: '/#/inbox/:message',
+		      url: '/inbox/:message',
 		      templateUrl: 'templates/mail.html',
 		      controller: mailFullCtrl,
 		      data: {}
@@ -45,5 +52,6 @@ module.config(function($stateProvider, $urlRouterProvider) {
 		  $stateProvider
 		    .state(compose)
 		    .state(mailList)
-		    .state(mailFull);
+		    .state(mailFull)
+		    .state(mail)
 });
