@@ -10,3 +10,9 @@ body {
 .button_width_fix {
   width: 190px;
 }
+.compose_buttons_margin {
+  margin: 0 15px 0 15px;
+}
+.center_inbox {
+  text-align: center;
+}
