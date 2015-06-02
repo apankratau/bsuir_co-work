@@ -1,0 +1,48 @@
+--- Provide a list of all users 
+GET /users
+{ page: 1, 
+users: [{name:"Ivan Ivanov", id:"123", registration:"2015-01-29",
+status: "offline|suspended|online", latestActivity:"2015-01-29"}]
+}
+--- Provide a list of all users by pages
+GET /users?p=1
+
+--- Create user
+POST  {name:"Ivan Ivanov"} /users
+HTTP_CREATED, HTTP_SEE_OTHER /users/{user}
+
+-- Get user basic details
+GET /users/{user}
+{name:"Ivan Ivanov", id:"123", registration:"2015-01-29",
+status: "offline|suspended|online", latestActivity:"2015-01-29"}
+
+-- Get user status details
+GET /users/{user}/status
+{id:"123", status:"online"}
+
+-- Get user activity details
+GET /users/{user}/activities
+{id:"123", page:1, activities:[
+{activity:"revoke|create|delete", time:"2015-01-29T19:00"},
+{activity:"revoke|create|delete", time:"2015-01-29T19:01"}
+]}
+
+-- Get user activity details by pages
+GET /users/{user}/activities?page=1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

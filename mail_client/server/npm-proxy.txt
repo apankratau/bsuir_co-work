@@ -1,0 +1,11 @@
+PROXY NPM 
+-----------
+http://wil.boayue.com/blog/2013/06/14/using-npm-behind-a-proxy/
+
+NODE Ignore
+----------
+https://github.com/github/gitignore/blob/master/Node.gitignore
+
+cd server
+npm install
+npm --https-proxy=http://kivanov:123@proxy.bsu:3128 install
