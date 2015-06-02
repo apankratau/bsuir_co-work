@@ -34,10 +34,10 @@ module.config(function($stateProvider, $urlRouterProvider) {
 		  }
 
 		  var mailList = {
-		      name: 'mailList',
+		      name: 'inbox',
 		      url: '/inbox',
 		      templateUrl: 'templates/inbox.html',
-		      controller: mailListCtrl,
+		      //controller: mailListCtrl,
 		      data: {}
 		  }
 
