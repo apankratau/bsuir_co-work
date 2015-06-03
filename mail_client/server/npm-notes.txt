@@ -1,7 +1,0 @@
-PROXY NPM 
------------
-http://wil.boayue.com/blog/2013/06/14/using-npm-behind-a-proxy/
-
-NODE Ignore
-----------
-https://github.com/github/gitignore/blob/master/Node.gitignore

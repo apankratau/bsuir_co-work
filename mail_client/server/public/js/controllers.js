@@ -1,21 +1,40 @@
-'use strict';
+"use strict";
 
 var module = angular.module('postclientControllers', ['restangular', 'ui.router']);
 
-var composeCtrl = module.
-	controller('composeCtrl', ['$scope', function($scope) {
-		$scope.sendMessage =function(){
-			console.log($scope.message);
-		}
+var composeCtrl = module.controller('composeCtrl', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http) {
+	$scope.sendMessage = function() {
+		var objToAdd = {
+			"topic": $scope.topic,
+			"message": $scope.message
+		};
 
+		$rootScope.messages.push(objToAdd);
+
+		/*$http.put('/messages.json', $rootScope.messages)
+			.success(function() {
+				alert('yeah!');
+			})
+			.error(function() {
+				alert('nope :(');
+			});*/
+
+	};
 }]);
 
-var mailListCtrl = module.
-	controller('mailListCtrl', ['$scope', '$log', 'restangular', function($scope, $log, Restangular) {
+var mailCtrl = module.controller('mailCtrl', ['$rootScope', '$http', function($rootScope, $http) { 
+	$http.get('messages.json').success(function(data) {
+		$rootScope.messages = data;
+	});
 }]);
 
-var mailFullCtrl = module.
-	controller('mailFullCtrl', ['$scope', '$log', 'restangular', function($scope, $log, Restangular) {
+var mailListCtrl = module.controller('mailListCtrl', ['$rootScope', '$scope', function($rootScope, $scope) { 
+	$scope.messages = $rootScope.messages;
+}]);
+
+var mailFullCtrl = module.controller('mailFullCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
+	$scope.topic = $stateParams.topic;
+	$scope.message = $stateParams.message;
 }]);
 
 module.config(function($stateProvider, $urlRouterProvider) {
@@ -26,6 +45,7 @@ module.config(function($stateProvider, $urlRouterProvider) {
 		  	  name: 'mail',
 		      url: '/mail',
 		      templateUrl: 'templates/mail.html',
+		      controller: "mailCtrl",
 		      data: {}
 		  }
 
@@ -33,7 +53,7 @@ module.config(function($stateProvider, $urlRouterProvider) {
 		      name: 'newletter',
 		      url: '/newletter',
 		      templateUrl: 'templates/compose.html',
-		      //controller: composeCtrl,
+		      controller: "composeCtrl",
 		      data: {}
 		  }
 
@@ -41,21 +61,24 @@ module.config(function($stateProvider, $urlRouterProvider) {
 		      name: 'inbox',
 		      url: '/inbox',
 		      templateUrl: 'templates/inbox.html',
-		      //controller: mailListCtrl,
+		      controller: "mailListCtrl",
 		      data: {}
 		  }
 
 		  var mailFull = {
 		      name: 'mailFull',
-		      url: '/inbox/:message',
-		      templateUrl: 'templates/mail.html',
-		      controller: mailFullCtrl,
-		      data: {}
+		      url: '/inbox/:topic',
+		      templateUrl: 'templates/message.html',
+		      controller: "mailFullCtrl",
+		      data: {},
+		      params: {
+		      	message: null
+		      }
 		  }
 
 		  $stateProvider
+		  	.state(mail)
 		    .state(compose)
 		    .state(mailList)
-		    .state(mailFull)
-		    .state(mail)
+		    .state(mailFull);
 });

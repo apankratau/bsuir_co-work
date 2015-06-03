@@ -1,6 +1,6 @@
 {
-  "name": "users-noderest-api",
-  "description": "Prototype REST API with Node for users service",
+  "name": "mail_client_app",
+  "description": "Mail Client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -1,7 +1,7 @@
 <div class="row">
-  <ul class="center_inbox">
-    <li>
-      <a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt cum adipisci aut porro praesentium odit eligendi nisi iusto suscipit. Iure quisquam necessitatibus facilis, rem maxime laboriosam temporibus doloremque ad provident.</a>
+  <ul class="centered_text">
+    <li ng-repeat="message in messages" class="inbox_message">
+      <a ui-sref="mailFull({ topic: message.topic, message: message.message })">{{message.topic}}: {{message.message}}</a>
     </li>
   </ul>
 </div>

@@ -1,18 +1,41 @@
 body {
-  background-color: #eeeeee;
+  background-color: #eee;
 }
+
 .top_margined {
   margin-top: 10%;
 }
+
 .centered_text {
   text-align: center;
 }
+
 .button_width_fix {
   width: 190px;
 }
+
 .compose_buttons_margin {
   margin: 0 15px 0 15px;
 }
+
 .center_inbox {
   text-align: center;
+}
+
+.message_box {
+  resize: vertical;
+}
+
+.inbox_message {
+  list-style: none;
+  display: block;
+  height: 2.5em;
+  line-height: 2.5em;
+  border: 1px solid #222;
+  border-radius: 6px;
+  box-shadow: inset 0 0 15px #e1e1e1, 0 0 1px #666;
+}
+
+.single_message__message {
+	margin: 0 20%;
 }

@@ -3,5 +3,3 @@ var module = angular.module('postclientApp', [
 	'ui.router',
 	'postclientControllers'
 ]);
-	
-
