@@ -8,10 +8,11 @@ var composeCtrl = module.controller('composeCtrl', ['$rootScope', '$scope', '$lo
 	};
 }]);
 
-var mailCtrl = module.controller('mailCtrl', ['$rootScope', '$http', function($rootScope, $http) { 
-	$http.get('messages.json').success(function(data) {
-		$rootScope.messages = data;
-	});
+var composeCtrl = module.controller('mailCtrl', ['$scope', 'Restangular', function($scope, Restangular) {
+	var baseAPI = Restangular.all('api');
+        baseAPI.one('inbox').get().then(function(res) {
+  			$scope.inbox = res.inbox;
+  		});
 }]);
 
 var mailListCtrl = module.controller('mailListCtrl', ['$rootScope', '$scope', function($rootScope, $scope) { 

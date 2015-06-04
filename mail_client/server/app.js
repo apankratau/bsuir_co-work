@@ -10,6 +10,14 @@ app.get('/api', function (req, res) {
   res.send('Mail Service');
 });
 
+app.get('/api/inbox/:topic', function(req, res) {
+     // res.send(404, 'No data here');
+	//res.send({ "some": "json" });
+ 	res.send({ 
+ 		req.params[0];
+    });
+ });
+
 var server = app.listen(3000, function () {
 
   var host = server.address().address;
