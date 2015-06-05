@@ -1,7 +1,6 @@
-<div class="row">
-  <ul class="centered_text">
-    <li ng-repeat="message in messages" class="inbox_message">
-      <a ui-sref="mailFull({ topic: message.topic, message: message.message })">{{message.topic}}: {{message.message}}</a>
-    </li>
-  </ul>
-</div>
+<table class="table table-condensed">
+  <tr class="message-unread"> <!--message-unread/message-unread-->
+    <td></td> <!--from-->
+    <td></td> <!--topic-->
+  </tr>
+</table>

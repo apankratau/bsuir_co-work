@@ -6,7 +6,9 @@
   <title>Post Client</title>
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/styles.css">
+
+  <link rel="stylesheet/less" type="text/css" href="css/styles.less">
+  <script src="js/less.min.js" type="text/javascript" defer></script>
 
   <script src="js/lib/angular.js" defer></script>
   <script src="js/lib/lodash.js" defer></script>
@@ -32,25 +34,17 @@
           <li><a href="#">Compose</a></li>
           <li class="active"><a href="#">Inbox</a></li>
         </ul>
+        <ul class="nav navbar-nav pull-right">
+          <li><a href="#" class="user-mail">user@mail.com</a></li>
+        </ul>
       </nav>
     </header>
 
     <div class="container">
       <div class="row">
-        <table class="table table-striped table-bordered">
-          <tr>
-            <td>john@example.com</td>
-            <td>Hello, man!</td>
-          </tr>
-          <tr>
-            <td>mary@example.com</td>
-            <td>I lovee you.</td>
-          </tr>
-          <tr>
-            <td>july@example.com</td>
-            <td>Work with me :-)</td>
-          </tr>
-        </table>
+
+        <p>Loading messages...</p>
+
       </div>
     </div>
 

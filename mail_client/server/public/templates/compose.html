@@ -1,6 +1,17 @@
-<div class="row" ng-controller="composeCtrl">
-  <input type="text" class="u-full-width" placeholder="Type topic..." ng-model="topic">
-  <textarea class="u-full-width message_box" placeholder="Enter your message here..." ng-model="message"></textarea>
-  <button class="button-primary u-pull-right compose_buttons_margin" type="button" name="send_message" ng-click="sendMessage()">Send</button>
-  <button class="button u-pull-right compose_buttons_margin" type="button" name="send_message" ui-sref="mail">Back</button>
+<div class="grid">
+  <div class="row">
+    <div class="col-md-5 compose-element">
+      <input class="input-medium compose-element-topic" ng-model="topic" placeholder="Type topic..." type="text">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5 compose-element">
+      <textarea class="message-text compose-element-message" ng-model="message" placeholder="Enter your message here..."></textarea>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5 compose-element">
+      <button class="btn btn-primary compose-element-send" name="send_message" ng-click="sendMessage()" type="button">Send</button>
+    </div>
+  </div>
 </div>

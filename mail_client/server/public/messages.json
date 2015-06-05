@@ -1,22 +1,14 @@
 [
 	{
-		"topic": "topic_one",
-		"message": "message_one"
+		"topic": "Newsletter Issue #13",
+		"message": "We have new shop items from Malaysia!"
 	},
 	{
-		"topic": "topic_two",
-		"message": "message_two"
+		"topic": "[WORK] Task 2",
+		"message": "1. Rewrite template. 2. Integrate LESS. 3. Create directives. 4. Drink beer."
 	},
 	{
-		"topic": "topic_three",
-		"message": "message_three"
-	},
-	{
-		"topic": "topic_four",
-		"message": "message_four"
-	},
-	{
-		"topic": "topic_five",
-		"message": "message_five"
+		"topic": "SALE! Workshop, st. Lyuse 41",
+		"message": "Buy 15$ get 1600$ only on 16 Jun!"
 	}
 ]
