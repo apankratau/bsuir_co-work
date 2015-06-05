@@ -11,8 +11,23 @@ app.get('/api', function (req, res) {
 });
 
 app.get('/api/inbox/:topic', function(req, res) {
+    res.send({
+        "registration":"2015-01-29",
+        "status": "online",
+        "latestActivity":"2015-01-29"
+    });
+ });
+
+app.get('/api/newletter', function(req, res) {
+ 	res.send({
+ 		"letter" : req.params[0]
+    });
+ });
+
+
+app.get('/api/inbox', function(req, res) {
  	res.send({ 
- 		req.params[0];
+ 		//Array Message
     });
  });
 

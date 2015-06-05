@@ -4,16 +4,18 @@ var module = angular.module('postclientControllers', ['restangular', 'ui.router'
 
 var composeCtrl = module.controller('composeCtrl', ['$rootScope', '$scope', '$log', function($rootScope, $scope, $log) {
 	$scope.sendMessage = function() {
-		$log("Message send. \n Topic: " + $scope.topic + ", message: " + $scope.message);
+		console.log("Message send. \n Topic: " + $scope.topic + ", message: " + $scope.message);
 	};
 }]);
 
 var composeCtrl = module.controller('mailCtrl', ['$scope', 'Restangular', function($scope, Restangular) {
 	var baseAPI = Restangular.all('api');
-        baseAPI.one('inbox/:topic').get().then(function(res) {
-  			$scope.inbox = res.inbox;
-  			//user@mail
-  		});
+    baseAPI.one('inbox/:topic').get().then(function(res) {
+  		$scope.inbox = res.inbox;
+  		//-----------------------
+  		console.log($scope.inbox);
+  		//-----------------------
+  	});
 }]);
 
 var mailListCtrl = module.controller('mailListCtrl', ['$rootScope', '$scope', function($rootScope, $scope) { 
@@ -21,8 +23,15 @@ var mailListCtrl = module.controller('mailListCtrl', ['$rootScope', '$scope', fu
 }]);
 
 var mailFullCtrl = module.controller('mailFullCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
-	$scope.topic = $stateParams.topic;
-	$scope.message = $stateParams.message;
+	var baseAPI = Restangular.all('api');
+    baseAPI.one('inbox').get().then(function(res) {
+  		$scope.inbox = res.inbox;
+  	});
+  	//-----------------------
+    while(c in $scope.inbox){
+    	console.log(c);
+    }
+    //-----------------------
 }]);
 
 module.config(function($stateProvider, $urlRouterProvider) {
