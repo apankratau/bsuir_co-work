@@ -10,8 +10,9 @@ var composeCtrl = module.controller('composeCtrl', ['$rootScope', '$scope', '$lo
 
 var composeCtrl = module.controller('mailCtrl', ['$scope', 'Restangular', function($scope, Restangular) {
 	var baseAPI = Restangular.all('api');
-        baseAPI.one('inbox').get().then(function(res) {
+        baseAPI.one('inbox/:topic').get().then(function(res) {
   			$scope.inbox = res.inbox;
+  			//user@mail
   		});
 }]);
 
