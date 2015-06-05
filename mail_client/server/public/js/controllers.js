@@ -2,23 +2,9 @@
 
 var module = angular.module('postclientControllers', ['restangular', 'ui.router']);
 
-var composeCtrl = module.controller('composeCtrl', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http) {
+var composeCtrl = module.controller('composeCtrl', ['$rootScope', '$scope', '$log', function($rootScope, $scope, $log) {
 	$scope.sendMessage = function() {
-		var objToAdd = {
-			"topic": $scope.topic,
-			"message": $scope.message
-		};
-
-		$rootScope.messages.push(objToAdd);
-
-		/*$http.put('/messages.json', $rootScope.messages)
-			.success(function() {
-				alert('yeah!');
-			})
-			.error(function() {
-				alert('nope :(');
-			});*/
-
+		$log("Message send. \n Topic: " + $scope.topic + ", message: " + $scope.message);
 	};
 }]);
 
