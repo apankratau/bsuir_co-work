@@ -2,55 +2,50 @@
 
 var module = angular.module('postclientControllers', ['restangular', 'ui.router']);
 
-var composeCtrl = module.controller('composeCtrl', ['$rootScope', '$scope', '$log', function($rootScope, $scope, $log) {
+var composeCtrl = module.controller('composeCtrl', ['$scope', 'Restangular', '$log', function($scope, Restangular, $log) {
+	
+	var baseAPI = Restangular.all('api');
+
 	$scope.sendMessage = function() {
-		console.log("Message send. \n Topic: " + $scope.topic + ", message: " + $scope.message);
+		var message = {};
+		message[$scope.topic] = $scope.message;
+
+		baseAPI.all('newletter').post(message).then(function(resolve) {
+			$log(resolve);
+		}, function() {
+			$log('An error occured.');
+		});
 	};
 }]);
 
-var composeCtrl = module.controller('mailCtrl', ['$scope', 'Restangular', function($scope, Restangular) {
+var mailListCtrl = module.controller('mailListCtrl', ['Restangular', '$scope', function(Restangular, $scope) { 
 	var baseAPI = Restangular.all('api');
-    baseAPI.one('inbox/:topic').get().then(function(res) {
-  		$scope.inbox = res.inbox;
-  		//-----------------------
-  		console.log(res.inbox.name);
-  		console.log(res.inbox.id);
-  		console.log(res.inbox.message);
-  		//-----------------------
-  	});
+
+	baseAPI.one('inbox').get().then(function(res) {
+		$scope.messages = res.inbox;
+	});
 }]);
 
-var mailListCtrl = module.controller('mailListCtrl', ['$rootScope', '$scope', function($rootScope, $scope) { 
-	$scope.messages = $rootScope.messages;
-}]);
+var mailFullCtrl = module.controller('mailFullCtrl', ['Restangular', '$scope', '$stateParams', function(Restangular, $scope, $stateParams) { 
+	var baseAPI = Restangular.all('api/inbox');
 
-var mailFullCtrl = module.controller('mailFullCtrl', ['$scope', '$log', 'Restangular', function($scope, $log, Restangular) {
-	var baseAPI = Restangular.all('api');
-    baseAPI.one('inbox').get().then(function(res) {
-    	console.log(res.inbox.params);
-  		$scope.inbox = res.inbox;
-  		    while(c in res.inbox){
-    			console.log(c.name);
-    			console.log(c.id);
-    			console.log(c.messages);
-    		}
-  	});
-  	//-----------------------
+	var topic = $stateParams.topic;
 
-    //-----------------------
+	baseAPI.one(topic).get().then(function(res) {
+		$scope.message = res;
+	});
 }]);
 
 module.config(function($stateProvider, $urlRouterProvider) {
 		  
-		  $urlRouterProvider.otherwise("/mail");
+		  $urlRouterProvider.otherwise("/inbox");
 
-		  var mail = {
-		  	  name: 'mail',
-		      url: '/mail',
-		      templateUrl: 'templates/mail.html',
-		      controller: "mailCtrl",
-		      data: {}
-		  }
+		  // var mail = {
+		  // 	  name: 'mail',
+		  //     url: '/mail',
+		  //     templateUrl: 'index.html',
+		  //     data: {}
+		  // };
 
 		  var compose = {
 		      name: 'newletter',
@@ -58,7 +53,7 @@ module.config(function($stateProvider, $urlRouterProvider) {
 		      templateUrl: 'templates/compose.html',
 		      controller: "composeCtrl",
 		      data: {}
-		  }
+		  };
 
 		  var mailList = {
 		      name: 'inbox',
@@ -66,21 +61,18 @@ module.config(function($stateProvider, $urlRouterProvider) {
 		      templateUrl: 'templates/inbox.html',
 		      controller: "mailListCtrl",
 		      data: {}
-		  }
+		  };
 
 		  var mailFull = {
 		      name: 'mailFull',
 		      url: '/inbox/:topic',
 		      templateUrl: 'templates/message.html',
 		      controller: "mailFullCtrl",
-		      data: {},
-		      params: {
-		      	message: null
-		      }
-		  }
+		      data: {}
+		  };
 
 		  $stateProvider
-		  	.state(mail)
+		  	//.state(mail)
 		    .state(compose)
 		    .state(mailList)
 		    .state(mailFull);

@@ -1,6 +1,5 @@
 <table class="table table-condensed">
-  <tr class="message-unread"> <!--message-unread/message-unread-->
-    <td></td> <!--from-->
-    <td></td> <!--topic-->
+  <tr ng-repeat="message in messages" class="message-unread">
+    <td><a ui-sref="mailFull({ topic: {{ $index + 1 }} })">{{message}}</a></td>
   </tr>
 </table>

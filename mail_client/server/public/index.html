@@ -7,13 +7,13 @@
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
 
-  <link rel="stylesheet/less" type="text/css" href="css/styles.less">
-  <script src="js/less.min.js" type="text/javascript" defer></script>
-
   <script src="js/lib/angular.js" defer></script>
   <script src="js/lib/lodash.js" defer></script>
   <script src="js/lib/restangular.js" defer></script>
   <script src="js/lib/angular-ui-router.js" defer></script>
+
+  <link rel="stylesheet/less" type="text/css" href="css/styles.less">
+  <script src="js/less.min.js" defer></script>
 
   <script src="js/app.js" defer></script>
   <script src="js/controllers.js" defer></script>
@@ -28,11 +28,11 @@
     <header>
       <nav class="navbar navbar-default">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Post Client</a>
+          <a class="navbar-brand" ui-sref="inbox">Post Client</a>
         </div>
         <ul class="nav navbar-nav">
-          <li><a href="#">Compose</a></li>
-          <li class="active"><a href="#">Inbox</a></li>
+          <li><a ui-sref="newletter">Compose</a></li>
+          <li><a ui-sref="inbox">Inbox</a></li>
         </ul>
         <ul class="nav navbar-nav pull-right">
           <li><a href="#" class="user-mail">user@mail.com</a></li>
@@ -41,9 +41,9 @@
     </header>
 
     <div class="container">
-      <div class="row">
+      <div class="row" ui-view="">
 
-        <p>Loading messages...</p>
+        <!-- <p>Loading messages...</p> -->
 
       </div>
     </div>

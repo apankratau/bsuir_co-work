@@ -22,42 +22,39 @@ app.get('/api', function (req, res) {
   res.send('Mail Service');
 });
 
-app.get('/api/inbox/:topic', function(req, res) {
-    console.log(req.params.topic);
-    // res.send(404, 'No data here');
-    //res.send({ "some": "json" });
-
-    for (var c in topic) {
-        if (topic.id == req.params.topic) {
-            res.send({
-                "name": c.name,
-                "id": c.id,
-                "message": c.message
-            });
-        }
-    }
-});
-
-app.get('/api/newletter', function(req, res) {
-    res.send({
-        //плдучаем письмо
+app.post('/api/newletter', function (req, res) {
+	var body = '';
+	req.on('data', function(d) {
+        body += d;
     });
-});
-
-
-app.get('/api/inbox', function(req, res) {
-    res.send({
-        "topic": [{
-            "name": "Ivan Ivanov",
-            "id": "12",
-            "message": "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
-        }, {
-            "name": "Masha Ivanova",
-            "id": "13",
-            "message": "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
-        }]
+    req.on('end', function() {
+        console.log(JSON.parse(body));
     });
+
+	res.send("Sent succesfully.");
 });
+
+app.get('/api/inbox', function (req, res) {
+	res.send({
+			"page": 1,
+			"inbox": [
+				"AngularJS discussion today at 5pm",
+				"Linux conference in Gomel tomorrow",
+				"Building RESTful services workshop",
+				"Night cycling trip at weekend",
+				"Morning cardio session"
+			]
+	});
+});
+
+app.get('/api/inbox/:topic', function (req, res) {
+	res.send({
+		"topic": req.params.topic,
+		"date": new Date().toUTCString(),
+		"message": "My message is " + req.params.topic + "."
+	});
+});
+
 var server = app.listen(3000, function () {
 
   var host = server.address().address;
