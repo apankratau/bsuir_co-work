@@ -1,7 +1,7 @@
 <div class="row">
   <ul class="centered_text">
     <li ng-repeat="message in messages" class="inbox_message">
-      <a ui-sref="mailFull({ topic: message.topic, message: message.message })">{{message.topic}}: {{message.message}}</a>
+      <a ui-sref="mailFull({ topic: {{ $index + 1 }} })">{{message}}</a>
     </li>
   </ul>
 </div>

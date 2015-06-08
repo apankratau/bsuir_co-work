@@ -10,6 +10,27 @@ app.get('/api', function (req, res) {
   res.send('Mail Service');
 });
 
+app.get('/api/inbox', function (req, res) {
+	res.send({
+			"page": 1,
+			"inbox": [
+				"AngularJS discussion today at 5pm",
+				"Linux conference in Gomel tomorrow",
+				"Building RESTful services workshop",
+				"Night cycling trip at weekend",
+				"Morning cardio session"
+			]
+	});
+});
+
+app.get('/api/inbox/:topic', function (req, res) {
+	res.send({
+		"topic": req.params.topic,
+		"date": new Date().toUTCString(),
+		"message": "My message is " + req.params.topic + "."
+	});
+});
+
 var server = app.listen(3000, function () {
 
   var host = server.address().address;

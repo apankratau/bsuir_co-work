@@ -8,19 +8,22 @@ var composeCtrl = module.controller('composeCtrl', ['$rootScope', '$scope', '$lo
 	};
 }]);
 
-var mailCtrl = module.controller('mailCtrl', ['$rootScope', '$http', function($rootScope, $http) { 
-	$http.get('messages.json').success(function(data) {
-		$rootScope.messages = data;
+var mailListCtrl = module.controller('mailListCtrl', ['Restangular', '$scope', function(Restangular, $scope) { 
+	var baseAPI = Restangular.all('api');
+
+	baseAPI.one('inbox').get().then(function(res) {
+		$scope.messages = res.inbox;
 	});
 }]);
 
-var mailListCtrl = module.controller('mailListCtrl', ['$rootScope', '$scope', function($rootScope, $scope) { 
-	$scope.messages = $rootScope.messages;
-}]);
+var mailFullCtrl = module.controller('mailFullCtrl', ['Restangular', '$scope', '$stateParams', function(Restangular, $scope, $stateParams) { 
+	var baseAPI = Restangular.all('api/inbox');
 
-var mailFullCtrl = module.controller('mailFullCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
-	$scope.topic = $stateParams.topic;
-	$scope.message = $stateParams.message;
+	var topic = $stateParams.topic;
+
+	baseAPI.one(topic).get().then(function(res) {
+		$scope.message = res;
+	});
 }]);
 
 module.config(function($stateProvider, $urlRouterProvider) {
@@ -31,7 +34,6 @@ module.config(function($stateProvider, $urlRouterProvider) {
 		  	  name: 'mail',
 		      url: '/mail',
 		      templateUrl: 'templates/mail.html',
-		      controller: "mailCtrl",
 		      data: {}
 		  }
 
@@ -56,10 +58,7 @@ module.config(function($stateProvider, $urlRouterProvider) {
 		      url: '/inbox/:topic',
 		      templateUrl: 'templates/message.html',
 		      controller: "mailFullCtrl",
-		      data: {},
-		      params: {
-		      	message: null
-		      }
+		      data: {}
 		  }
 
 		  $stateProvider
