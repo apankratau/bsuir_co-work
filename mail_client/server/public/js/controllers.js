@@ -13,7 +13,9 @@ var composeCtrl = module.controller('mailCtrl', ['$scope', 'Restangular', functi
     baseAPI.one('inbox/:topic').get().then(function(res) {
   		$scope.inbox = res.inbox;
   		//-----------------------
-  		console.log($scope.inbox);
+  		console.log(res.inbox.name);
+  		console.log(res.inbox.id);
+  		console.log(res.inbox.message);
   		//-----------------------
   	});
 }]);
@@ -22,15 +24,19 @@ var mailListCtrl = module.controller('mailListCtrl', ['$rootScope', '$scope', fu
 	$scope.messages = $rootScope.messages;
 }]);
 
-var mailFullCtrl = module.controller('mailFullCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
+var mailFullCtrl = module.controller('mailFullCtrl', ['$scope', '$log', 'Restangular', function($scope, $log, Restangular) {
 	var baseAPI = Restangular.all('api');
     baseAPI.one('inbox').get().then(function(res) {
+    	console.log(res.inbox.params);
   		$scope.inbox = res.inbox;
+  		    while(c in res.inbox){
+    			console.log(c.name);
+    			console.log(c.id);
+    			console.log(c.messages);
+    		}
   	});
   	//-----------------------
-    while(c in $scope.inbox){
-    	console.log(c);
-    }
+
     //-----------------------
 }]);
 
