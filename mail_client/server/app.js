@@ -10,6 +10,18 @@ app.get('/api', function (req, res) {
   res.send('Mail Service');
 });
 
+app.post('/api/newletter', function (req, res) {
+	var body = '';
+	req.on('data', function(d) {
+        body += d;
+    });
+    req.on('end', function() {
+        console.log(JSON.parse(body));
+    });
+
+	res.send("Sent succesfully.");
+});
+
 app.get('/api/inbox', function (req, res) {
 	res.send({
 			"page": 1,

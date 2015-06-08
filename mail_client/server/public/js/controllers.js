@@ -2,9 +2,19 @@
 
 var module = angular.module('postclientControllers', ['restangular', 'ui.router']);
 
-var composeCtrl = module.controller('composeCtrl', ['$rootScope', '$scope', '$log', function($rootScope, $scope, $log) {
+var composeCtrl = module.controller('composeCtrl', ['$scope', 'Restangular', function($scope, Restangular) {
+	
+	var baseAPI = Restangular.all('api');
+
 	$scope.sendMessage = function() {
-		$log("Message send. \n Topic: " + $scope.topic + ", message: " + $scope.message);
+		var message = {};
+		message[$scope.topic] = $scope.message;
+
+		baseAPI.all('newletter').post(message).then(function(resolve) {
+			console.log(resolve);
+		}, function() {
+			console.log('An error occured.');
+		})
 	};
 }]);
 
