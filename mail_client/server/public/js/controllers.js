@@ -36,16 +36,15 @@ var mailFullCtrl = module.controller('mailFullCtrl', ['Restangular', '$scope', '
 	});
 }]);
 
+var indexCtrl = module.controller('indexCtrl', ['$scope', '$location', function($scope, $location) {
+	$scope.isActive = function (viewLocation) {
+		return viewLocation === $location.path();
+	};
+}]);
+
 module.config(function($stateProvider, $urlRouterProvider) {
 		  
 		  $urlRouterProvider.otherwise("/inbox");
-
-		  // var mail = {
-		  // 	  name: 'mail',
-		  //     url: '/mail',
-		  //     templateUrl: 'index.html',
-		  //     data: {}
-		  // };
 
 		  var compose = {
 		      name: 'newletter',
@@ -72,7 +71,6 @@ module.config(function($stateProvider, $urlRouterProvider) {
 		  };
 
 		  $stateProvider
-		  	//.state(mail)
 		    .state(compose)
 		    .state(mailList)
 		    .state(mailFull);

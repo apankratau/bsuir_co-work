@@ -23,16 +23,16 @@
 
 <body>
 
-  <div class="wrapper">
+  <div class="wrapper" ng-controller="indexCtrl">
 
     <header>
       <nav class="navbar navbar-default">
-        <div class="navbar-header">
-          <a class="navbar-brand" ui-sref="inbox">Post Client</a>
-        </div>
+        <ul class="nav navbar-nav navbar-header">
+          <li class="active"><a class="navbar-brand" ui-sref="inbox">Post Client</a></li>
+        </ul>
         <ul class="nav navbar-nav">
-          <li><a ui-sref="newletter">Compose</a></li>
-          <li><a ui-sref="inbox">Inbox</a></li>
+          <li ng-class="{ active: isActive('/newletter') }"><a ui-sref="newletter">Compose</a></li>
+          <li ng-class="{ active: isActive('/inbox') }"><a ui-sref="inbox">Inbox</a></li>
         </ul>
         <ul class="nav navbar-nav pull-right">
           <li><a href="#" class="user-mail">user@mail.com</a></li>
@@ -42,8 +42,6 @@
 
     <div class="container">
       <div class="row" ui-view="">
-
-        <!-- <p>Loading messages...</p> -->
 
       </div>
     </div>

@@ -3,19 +3,6 @@ var path = require('path');
 
 var app = express();
 
-var topic = {
-"topic": [{
-    "name": "Ivan Ivanov",
-    "id": "12",
-    "message": "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
-}, {
-    "name": "Masha Ivanova",
-    "id": "13",
-    "message": "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
-}]
-};
-
-
 app.use(express.static(path.join(__dirname, 'public'))); //  "public" off of current is root
 
 app.get('/api', function (req, res) {
